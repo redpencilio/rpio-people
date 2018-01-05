@@ -10,8 +10,8 @@ export default Controller.extend({
       firstName: "Aad",
       lastName: "Versteden",
       roles: A([
-        "Technical Futurist",
-        "CEO"
+        EmberObject.create({ title: "Technical Futurist" }),
+        EmberObject.create({ title: "CEO" })
       ]),
       email: "aad.versteden@redpencil.io",
       phone: "+32 476 51 38 48",

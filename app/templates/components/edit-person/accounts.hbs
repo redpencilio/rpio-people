@@ -1,0 +1,38 @@
+<div class="layout-column">
+  {{#each person.accounts as |account index|}}
+    {{#paper-card as |card|}}
+      {{#card.title}}Account for {{account.name}}{{/card.title}}
+      {{#card.content}}
+        <div class="layout-column layout-gt-sm-row">
+          {{paper-input class="flex" label="Service name" value=account.name onChange=(action (mut account.name))}}
+          {{paper-input class="flex" label="Service homepage" value=account.serviceHomepage onChange=(action (mut account.serviceHomepage))}}
+        </div>
+        <div class="layout-column layout-gt-md-row">
+          {{paper-input class="flex" label="Username" value=account.username onChange=(action (mut account.username))}}
+          {{paper-input class="flex" label="Account page" value=account.accountPage onChange=(action (mut account.accountPage))}}
+        </div>
+      {{/card.content}}
+
+      {{#card.actions}}
+        {{#paper-button onClick=(action "removeAccount" account index) iconButton=true}}{{paper-icon "remove circle"}}{{/paper-button}}
+      {{/card.actions}}
+      {{paper-divider}}
+    {{/paper-card}}
+  {{/each}}
+  {{#paper-card as |card|}}
+    {{#card.title}}New account{{/card.title}}
+    {{#card.content}}
+      <div class="layout-row layout-sm-column">
+        {{paper-input class="flex" label="New service name" value=newAccountName onChange=(action (mut newAccountName))}}
+        {{paper-input class="flex" label="New service homepage" value=newServiceHomepage onChange=(action (mut newServiceHomepage))}}
+      </div>
+      <div class="layout-row layout-md-column">
+        {{paper-input class="flex" label="New username" value=newAccountUsername onChange=(action (mut newAccountUsername))}}
+        {{paper-input class="flex" label="New account page" value=newAccountAccountPage onChange=(action (mut newAccountAccountPage))}}
+      </div>
+    {{/card.content}}
+    {{#card.actions}}
+      {{#paper-button onClick=(action "addAccount") iconButton=true}}{{paper-icon "add circle"}}{{/paper-button}}
+    {{/card.actions}}
+  {{/paper-card}}
+</div>

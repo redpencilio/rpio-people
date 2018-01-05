@@ -1,15 +1,24 @@
+{{#paper-card as |card|}}
+  {{#card.title}}Your vcard{{/card.title}}
+  {{#card.content}}
+<small>==Remove this prologue==</small>
+
 <div style="border-left: solid 1px #da0707; padding-left: 1ex;">
 <pre vocab="http://schema.org/" typeof="Person" about={{person.url}}><span property="name"><span property="givenName">{{person.firstName}}</span> <span property="familyName">{{person.lastName}}</span></span>
-{{#each person.roles as |title|}}  <span property="jobTitle">{{title}}</span>
+{{#each person.roles as |role|}}  <span property="jobTitle">{{role.title}}</span>
 {{/each}}
 
 Proudly building the <a href="https://twitter.com/search?q=%23webwewant" style="color: black; text-decoration: none;">#WebWeWant</a> at <a property="worksFor" href="https://redpencil.io" style="color: black; text-decoration: none;">redpencil<span style="color: red">.</span>io</a>
 
-  {{#each person.accounts as |account|}}
+{{#each person.accounts as |account|}}
 {{account.name}}: {{padding-to account.name maxOnlineAccountLength}}<a property="foaf:holdsAccount" style="color: black; text-decoration: none;" href={{account.accountPage}} typeof="foaf:OnlineAccount">@<span property="foaf:accountName">{{account.username}}</span><span property="foaf:accountServiceHomepage" resource={{account.serviceHomepage}}></span></a>
-  {{/each}}
+{{/each}}
 Phone: {{padding-to "Phone" maxOnlineAccountLength}}<a property="telephone" style="color: black; text-decoration: none;" href="tel:{{person.phone}}" content=
-                                                     {{person.phone}}>{{person.phone}}</a>
+                                                      {{person.phone}}>{{person.phone}}</a>
 Email: {{padding-to "Email" maxOnlineAccountLength}}<a property="email" style="color: black; text-decoration: none;" href="mailto:{{person.email}}" content={{person.email}}>{{person.email}}</a>
 Web: {{padding-to "Web" maxOnlineAccountLength}}<span property="worksFor" about="https://redpencil.io" type="Corporation"><a property="url" style="color: black; text-decoration: none;" href="https://redpencil.io">https://redpencil.io</a><span property="vatID" content="BE 0681.569.312"></span></span></pre>
 </div>
+
+<small>==Remove this epilogue==</small>
+  {{/card.content}}
+{{/paper-card}}

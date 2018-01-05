@@ -1,0 +1,12 @@
+<div class="layout-column">
+  <div class="layout layout-md-row">
+    {{paper-input class="flex" label="First name" value=person.firstName onChange=(action (mut person.firstName))}}
+    {{paper-input class="flex" label="Family name" value=person.lastName onChange=(action (mut person.lastName))}}
+  </div>
+  <div class="layout layout-sm-row">
+    {{paper-input class="flex" label="email" value=person.email onChange=(action (mut person.email))}}
+    {{paper-input class="flex" label="phone" value=person.phone onChange=(action (mut person.phone))}}
+  </div>
+
+  {{paper-input class="flex" label="Person URL" value=person.url onChange=(action (mut person.url))}}
+</div>

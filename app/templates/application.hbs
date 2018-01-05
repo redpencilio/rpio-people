@@ -1,7 +1,10 @@
 {{outlet}}
 
-{{edit-person person=person}}
+<div class="layout-column layout-gt-sm-row">
+  {{edit-person person=person class="flex"}}
+  {{show-vcard person=person class="flex"}}
+</div>
+
 
 <hr />
 
-{{show-vcard person=person}}

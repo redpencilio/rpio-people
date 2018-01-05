@@ -1,0 +1,13 @@
+<div class="layout-column">
+  {{#each person.roles as |role index|}}
+    <div class="layout-row">
+      {{paper-input class="flex-80" label="Role" value=role.title onChange=(action (mut role.title))}}
+      {{#paper-button class="flex-20" iconButton=true onClick=(action "removeRole" role index)}}{{paper-icon "remove circle"}}{{/paper-button}}
+    </div>
+  {{/each}}
+  <div class="layout-row">
+    {{paper-input class="flex-80" label="New role" value=newRole onChange=(action (mut newRole))}}
+    {{#paper-button class="flex-20" iconButton=true onClick=(action "addRole")}}{{paper-icon "add circle"}}{{/paper-button}}
+  </div>
+</div>
+

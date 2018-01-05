@@ -1,44 +1,24 @@
-<dl>
-  <dt>First name</dt><dd>{{input value=person.firstName}}</dd>
-  <dt>Family name</dt><dd>{{input value=person.lastName}}</dd>
-  <dt>Person URL</dt><dd>{{input value=person.url}}</dd>
-  <dt>email</dt><dd>{{input value=person.email}}</dd>
-  <dt>phone</dt><dd>{{input value=person.phone}}</dd>
-  <dt>roles</dt><dd>
-    <ul>
-      {{#each person.roles as |role index|}}
-        <li>
-          <dt>Role</dt><dd>{{input value=role}}</dd>
-          <button {{action "removeRole" role index}}>Remove</button>
-        </li>
-      {{/each}}
-      <li>
-        <dt>new role</dt><dd>{{input value=newRole}}</dd>
-        <button {{action "addRole"}}>Add</button>
-      </li>
-    </ul>
-  </dd>
-  <dt>accounts</dt><dd>
-    <ul>
-      {{#each person.accounts as |account index|}}
-        <li>
-          <dt>Service name</dt><dd>{{input value=account.name}}</dd>
-          <dt>Service homepage</dt><dd>{{input value=account.serviceHomepage}}</dd>
-          <dt>Username</dt><dd>{{input value=account.username}}</dd>
-          <dt>Account page</dt><dd>{{input value=account.accountPage}}</dd>
-          <button {{action "removeAccount" account index}}>Remove</button>
-        </li>
-      {{/each}}
-      <li>
-        <dt>new service name</dt><dd>{{input value=newAccountName}}</dd>
-        <dt>new service homepage</dt><dd>{{input value=newAccountServiceHomepage}}</dd>
-        <dt>new username</dt><dd>{{input value=newAccountUsername}}</dd>
-        <dt>new account page</dt><dd>{{input value=newAccountAccountPage}}</dd>
-        <button {{action "addAccount"}}>Add</button>
-      </li>
-    </ul>
-  </dd>
-</dl>
+{{#paper-tabs
+   primary=true
+   borderBottom=true
+   selected=selectedChapter
+   onChange=(action (mut selectedChapter)) as |tabs|}}
+  {{#tabs.tab value="core"}}Core info{{/tabs.tab}}
+  {{#tabs.tab value="roles"}}Company roles{{/tabs.tab}}
+  {{#tabs.tab value="accounts"}}User accounts{{/tabs.tab}}
+{{/paper-tabs}}
+
+{{#liquid-bind selectedChapter class="md-padding dynamic-animation" as |chapter|}}
+  {{#if (eq chapter "core")}}
+    {{edit-person/core person=person}}
+  {{/if}}
+
+  {{#if (eq chapter "roles")}}
+    {{edit-person/roles person=person removeRole=(action "removeRole") addRole=(action "addRole")}}
+  {{/if}}
+  {{#if (eq chapter "accounts")}}
+    {{edit-person/accounts person=person removeAccount=(action "removeAccount") addAccount=(action "addAccount")}}
+  {{/if}}
+{{/liquid-bind}}
 
 
-{{yield}}
